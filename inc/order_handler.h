@@ -12,7 +12,8 @@ typedef enum {
 
 typedef struct {
     uint8_t unserved_orders;  // Bitmask for unserved orders on each floor
-    uint8_t up_orders;        // Bitmask for orders going up
+    uint8_t up_orders;
+    uint8_t down_orders;        // Bitmask for orders going up
     uint8_t inside_orders;    // Bitmask for orders from inside the cab
 } ElevatorOrders;
 

@@ -19,7 +19,7 @@ void handle_button_pressed(int floor, ButtonType button, ElevatorOrders *orders,
 {
     elevio_buttonLamp(floor,button,1);
     update_new_order(orders,floor,button);
-    printf("order floor: %d\n", floor);
+    printf("------------------------\n");
     //printf("order: %x\n",orders->inside_orders);
     //trenger logikk for å endre moving_up
 
@@ -29,8 +29,13 @@ void handle_button_pressed(int floor, ButtonType button, ElevatorOrders *orders,
         switch_moving_direction(anElevator);
         new_destination_floor_bit_map = get_next_destination_bit_map(orders,get_current_floor(anElevator),get_moving_up(anElevator));
     }
+    printf("button type: %d\n",button);
+    printf("highest bit: %d\n",get_highest_bit(new_destination_floor_bit_map));
+    printf("bit map: %d\n",new_destination_floor_bit_map);
     set_destination_floor(anElevator,get_highest_bit(new_destination_floor_bit_map));
     set_has_destination(anElevator,true);
+
+
     //printf("next dest: %x\n",anElevator->destination_floor);
     return;
 }

@@ -5,8 +5,6 @@
 #include "driver/elevio.h"
 #include <unistd.h>
 #include "../inc/elevatorFSM.h"
-//#include "../inc/order.h"
-#include "../inc/utilities.h"
 #include "../inc/startup_sequence.h"
 #include "../inc/buttons.h"
 #include "../inc/order_handler.h"

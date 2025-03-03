@@ -101,18 +101,6 @@ void handle_AT_DESTINATION(Elevator *anElevator, ElevatorOrders *orders)
     elevio_buttonLamp(get_current_floor(anElevator),BUTTON_CAB,0);
 
 
-    uint8_t new_destination_floor_bit_map = get_next_destination_bit_map(orders,get_current_floor(anElevator),get_moving_up(anElevator));
-    if(!new_destination_floor_bit_map){
-        switch_moving_direction(anElevator);
-        new_destination_floor_bit_map = get_next_destination_bit_map(orders,get_current_floor(anElevator),get_moving_up(anElevator));
-    }
-    set_destination_floor(anElevator,get_highest_bit(new_destination_floor_bit_map));
-
-    if(!orders->unserved_orders)
-    {
-        set_has_destination(anElevator,false);
-    }
-
     if(elevio_obstruction())
     {
         set_start_time(anElevator);
@@ -120,6 +108,22 @@ void handle_AT_DESTINATION(Elevator *anElevator, ElevatorOrders *orders)
     }
     else if(get_time_difference(anElevator)>= 3)
     {
+
+        if(!orders->unserved_orders)
+        {
+            set_has_destination(anElevator,false);
+        } 
+        else 
+        {
+            uint8_t new_destination_floor_bit_map = get_next_destination_bit_map(orders,get_current_floor(anElevator),get_moving_up(anElevator));
+            if(!new_destination_floor_bit_map)
+            {
+                switch_moving_direction(anElevator);
+                new_destination_floor_bit_map = get_next_destination_bit_map(orders,get_current_floor(anElevator),get_moving_up(anElevator));
+            }
+        printf("highest bit: %d\n",get_highest_bit(new_destination_floor_bit_map));
+        set_destination_floor(anElevator,get_highest_bit(new_destination_floor_bit_map));
+        }
         elevio_doorOpenLamp(0);
         printf("Hopp fra at DEST til IDLE\n");
         set_current_state(anElevator, IDLE);
