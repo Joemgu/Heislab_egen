@@ -44,3 +44,5 @@ int get_time_difference(Elevator *anElevator);
 void set_moving_up(Elevator *anElevator, bool moving_up);
 bool get_moving_up(Elevator *anElevator);
 void switch_moving_direction(Elevator *anElevator);
+
+bool get_is_moving(Elevator *anElevator);

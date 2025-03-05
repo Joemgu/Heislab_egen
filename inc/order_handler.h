@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #define UINT4_MASK 0x0F
 
@@ -28,6 +29,14 @@ void update_new_order(ElevatorOrders *orders, int destination_floor, Order_type_
 void mark_order_served(ElevatorOrders *orders, int served_floor);
 
 //returns the next destination floor based on where the elevator is, which direction the elvator is moving and the order_matrix
-uint8_t get_next_destination_bit_map(ElevatorOrders *orders, int current_floor, bool moving_up);
+uint8_t get_next_destination_bit_map(ElevatorOrders *orders, int current_floor, bool moving_up, bool elevator_is_moving);
 
 int get_highest_bit(uint8_t value);
+
+
+
+// Function to print uint8_t bitwise
+void print_bitwise(uint8_t value);
+
+// Function to print the ElevatorOrders struct bitwise
+void print_elevator_orders_bitwise(ElevatorOrders *orders);

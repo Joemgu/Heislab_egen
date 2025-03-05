@@ -79,3 +79,15 @@ int get_time_difference(Elevator *anElevator)
 {
     return (int)time(NULL) - anElevator->start_time;
 }
+
+bool get_is_moving(Elevator *anElevator) 
+{
+    if ((anElevator->current_state) == MOVING)
+    {
+        return true;
+    } 
+    else
+    {
+        return false;
+    } 
+}
